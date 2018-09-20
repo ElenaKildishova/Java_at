@@ -1,4 +1,4 @@
-package ru.p4b.dev.addressbook;
+package ru.p4b.dev.addressbook.model;
 
 public class ContactData {
   private final String firstname;
