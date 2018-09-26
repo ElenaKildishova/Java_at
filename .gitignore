@@ -47,4 +47,8 @@ sandbox/out/production/classes/MyFirstPr.class
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-.out/
+*.out/
+
+sandbox/src/main/java/ru/p4b/dev/sandbox/Equality.java
+sandbox/src/main/java/ru/p4b/dev/sandbox/Equation.java
+sandbox/src/test/java/ru/p4b/dev/sandbox/EquationTests.java
