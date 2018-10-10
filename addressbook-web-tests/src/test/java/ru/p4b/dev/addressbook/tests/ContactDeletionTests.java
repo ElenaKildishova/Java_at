@@ -8,9 +8,9 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactDeletion() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
      app.getContactHelper().createContact(new ContactData("Elena", "Kildishova", "+79139507792", "elenanov@ngs.ru", "[none]"), true);
     }
@@ -19,7 +19,7 @@ public class ContactDeletionTests extends TestBase {
     app.acceptNextAlert = true;
     app.getContactHelper().deleteSelectedContacts();
     app.wd.switchTo().alert().accept();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 

@@ -5,21 +5,20 @@ import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactModification() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
         if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Elena", "Kildishova", "+79139507792", "elenanov@ngs.ru", "[none]"), true);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(0);
     app.getContactHelper().initContactModification();
-    ContactData contact = new ContactData(before.get(0).getId(),"A1", "B1", "+791300000", "elenanova@ngs.ru", "[none]");
+    ContactData contact = new ContactData(before.get(0).getId(),"W1", "z1", "+791300000", "elenanova@ngs.ru", "[none]");
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();

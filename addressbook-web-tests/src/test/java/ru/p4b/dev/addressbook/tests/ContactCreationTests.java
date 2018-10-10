@@ -5,14 +5,13 @@ import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("Helen", "Kildishova", "+79139507792", "elenanov@ngs.ru", "[none]");
     app.getContactHelper().initContactCreation();
