@@ -9,19 +9,16 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() throws Exception {
-    app.goTo().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact = new ContactData("Helen", "Kildishova", "+79139507792", "elenanov@ngs.ru", "[none]");
-    app.getContactHelper().initContactCreation();
-    app.getContactHelper().fillContactForm(contact, true);
-    app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().list();
+    ContactData contact = new ContactData().withFirstName("Helen").withLastName("Kildishova").withMobilePhone("+79139507792").withEmail("elenanov@ngs.ru").withGroup("[none]");
+    app.contact().create(contact, true);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);

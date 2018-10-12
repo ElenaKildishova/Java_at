@@ -1,6 +1,7 @@
 package ru.p4b.dev.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
 
@@ -8,23 +9,23 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test(enabled = false)
-  public void testContactDeletion() throws Exception {
-    app.goTo().gotoHomePage();
-    if (! app.getContactHelper().isThereAContact()) {
-     app.getContactHelper().createContact(new ContactData("Elena", "Kildishova", "+79139507792", "elenanov@ngs.ru", "[none]"), true);
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.goTo().homePage();
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData().withFirstName("A").withLastName("B").withMobilePhone("+7918000000").withEmail("PPP@ngs.ru").withGroup("[none]"), true);
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.acceptNextAlert = true;
-    app.getContactHelper().deleteSelectedContacts();
-    app.wd.switchTo().alert().accept();
-    app.goTo().gotoHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() - 1);
-
-    before.remove(before.size() - 1);
-    Assert.assertEquals(before, after);
   }
 
+  @Test
+  public void testContactDeletion() throws Exception {
+    List<ContactData> before = app.contact().list();
+    int index = before.size() - 1;
+    app.contact().delete(index);
+    List<ContactData> after = app.contact().list();
+    Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(index);
+    Assert.assertEquals(before, after);
+  }
 }
