@@ -10,8 +10,12 @@ public class ContactData {
   private String homePhone;
   private String mobilePhone;
   private String workPhone;
-  private String email;
   private String allPhones;
+  private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
+  private String address;
 
   public int getId() {
     return id;
@@ -19,6 +23,24 @@ public class ContactData {
 
   public String getFirstname() {
     return firstname;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(firstname, that.firstname) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(allPhones, that.allPhones) &&
+            Objects.equals(allEmails, that.allEmails) &&
+            Objects.equals(address, that.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, lastname, allPhones, allEmails, address);
   }
 
   public String getAllPhones() {
@@ -31,6 +53,19 @@ public class ContactData {
 
   public String getWorkPhone() {
     return workPhone;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+  public String getEmail3() {
+    return email3;
+  }
+  public String getAllEmails() {
+    return allEmails;
+  }
+  public String getAddress() {
+    return address;
   }
 
   public ContactData withId(int id) {
@@ -78,19 +113,24 @@ public class ContactData {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname);
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
   }
 
   public String getLastname() {
