@@ -1,6 +1,7 @@
 package ru.p4b.dev.addressbook.tests;
 
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
@@ -31,7 +32,7 @@ public class ContactDataTests extends TestBase {
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
     assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
-    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm));
+    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
   }
 
   private String mergePhones(ContactData contact) {
