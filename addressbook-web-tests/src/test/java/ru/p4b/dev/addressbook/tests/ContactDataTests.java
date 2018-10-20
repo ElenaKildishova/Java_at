@@ -21,7 +21,7 @@ public class ContactDataTests extends TestBase {
       app.contact().create(new ContactData()
               .withFirstName("C").withLastName("D").withHomePhone("+333-33-33").withMobilePhone("+791395 0000")
               .withWorkPhone("8(383)45456").withEmail("SSS@ngs.ru").withEmail2("222@mail.ru").withEmail3("33_3@process4.biz")
-              .withAddress("630055 г.Новосибирск, ул. Восход д.55, кв1").withGroup("[none]"), true);
+              .withAddress("630055 Novosibirsk").withGroup("[none]"), true);
     }
   }
 
