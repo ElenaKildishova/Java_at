@@ -10,6 +10,10 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 sandbox/build/classes/java/main/MyFirstPr.class
