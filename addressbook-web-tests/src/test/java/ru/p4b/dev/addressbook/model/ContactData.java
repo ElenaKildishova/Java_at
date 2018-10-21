@@ -25,28 +25,35 @@ public class ContactData {
   @Expose
   @Transient
   private String group;
+  @Expose
   @Column(name = "home")
   @Type(type = "text")
   private String homePhone;
+  @Expose
   @Column(name = "mobile")
   @Type(type = "text")
   private String mobilePhone;
+  @Expose
   @Column(name = "work")
   @Type(type = "text")
   private String workPhone;
   @Transient
   private String allPhones;
+  @Expose
   @Column(name = "email")
   @Type(type = "text")
   private String email;
+  @Expose
   @Column(name = "email2")
   @Type(type = "text")
   private String email2;
+  @Expose
   @Column(name = "email3")
   @Type(type = "text")
   private String email3;
   @Transient
   private String allEmails;
+  @Expose
   @Column(name = "address")
   @Type(type = "text")
   private String address;
@@ -186,14 +193,20 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id &&
             Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname);
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(mobilePhone, that.mobilePhone) &&
+            Objects.equals(workPhone, that.workPhone) &&
+            Objects.equals(email, that.email) &&
+            Objects.equals(email2, that.email2) &&
+            Objects.equals(email3, that.email3) &&
+            Objects.equals(address, that.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, homePhone, mobilePhone, workPhone, email, email2, email3, address);
   }
-
 
   @Override
   public String toString() {

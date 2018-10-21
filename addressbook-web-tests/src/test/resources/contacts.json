@@ -2,16 +2,61 @@
   {
     "firstname": "testC 0",
     "lastname": "testC 0",
-    "group": "[none]"
+    "group": "[none]",
+    "homePhone": "8913 0",
+    "mobilePhone": "+7(383)43 0",
+    "workPhone": "55 55 0",
+    "email": "test@a 0",
+    "email2": "test@b 0",
+    "email3": "test@c 0",
+    "address": "Bersdsk 0"
   },
   {
     "firstname": "testC 1",
     "lastname": "testC 1",
-    "group": "[none]"
+    "group": "[none]",
+    "homePhone": "8913 1",
+    "mobilePhone": "+7(383)43 1",
+    "workPhone": "55 55 1",
+    "email": "test@a 1",
+    "email2": "test@b 1",
+    "email3": "test@c 1",
+    "address": "Bersdsk 1"
   },
   {
     "firstname": "testC 2",
     "lastname": "testC 2",
-    "group": "[none]"
+    "group": "[none]",
+    "homePhone": "8913 2",
+    "mobilePhone": "+7(383)43 2",
+    "workPhone": "55 55 2",
+    "email": "test@a 2",
+    "email2": "test@b 2",
+    "email3": "test@c 2",
+    "address": "Bersdsk 2"
+  },
+  {
+    "firstname": "testC 3",
+    "lastname": "testC 3",
+    "group": "[none]",
+    "homePhone": "8913 3",
+    "mobilePhone": "+7(383)43 3",
+    "workPhone": "55 55 3",
+    "email": "test@a 3",
+    "email2": "test@b 3",
+    "email3": "test@c 3",
+    "address": "Bersdsk 3"
+  },
+  {
+    "firstname": "testC 4",
+    "lastname": "testC 4",
+    "group": "[none]",
+    "homePhone": "8913 4",
+    "mobilePhone": "+7(383)43 4",
+    "workPhone": "55 55 4",
+    "email": "test@a 4",
+    "email2": "test@b 4",
+    "email3": "test@c 4",
+    "address": "Bersdsk 4"
   }
 ]
