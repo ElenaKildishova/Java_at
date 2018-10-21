@@ -6,7 +6,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -22,9 +24,6 @@ public class ContactData {
   @Expose
   @Column(name = "lastname")
   private String lastname;
-  @Expose
-  @Transient
-  private String group;
   @Expose
   @Column(name = "home")
   @Type(type = "text")
@@ -57,8 +56,26 @@ public class ContactData {
   @Column(name = "address")
   @Type(type = "text")
   private String address;
+  @Column(name = "photo")
+  @Type(type = "text")
   @Transient
-  private File photo;
+  private String photo;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public File getPhoto() {
+    return new File(photo);
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo.getPath();
+    return this;
+  }
 
   public int getId() {
     return id;
@@ -74,14 +91,6 @@ public class ContactData {
 
   public String getEmail() {
     return email;
-  }
-
-  public String getGroup() {
-    return group;
-  }
-
-  public File getPhoto() {
-    return photo;
   }
 
   public String getFirstname() {
@@ -131,11 +140,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
@@ -181,11 +185,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withPhoto(File photo) {
-    this.photo = photo;
-    return this;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -222,5 +221,10 @@ public class ContactData {
             ", email3='" + email3 + '\'' +
             ", address='" + address + '\'' +
             '}';
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
 import ru.p4b.dev.addressbook.model.Contacts;
 import ru.p4b.dev.addressbook.model.GroupData;
+import ru.p4b.dev.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,9 +56,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
+      Groups groups = app.db().groups();
+      File photo = new File("src/test/resources/1.png");
       app.goTo().homePage();
       Contacts before = app.db().contacts();
-      File photo = new File("src/test/resources/1.png");
       app.contact().create(contact, true);
       assertThat(app.contact().count(), equalTo(before.size() + 1));
       Contacts after = app.db().contacts();
