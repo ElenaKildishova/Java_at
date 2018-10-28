@@ -142,4 +142,11 @@ public class ContactHelper extends HelperBase {
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
+
+  public void addToGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    wd.findElement(By.name("to_group")).click();
+    click(By.name("add"));
+    returnToHomePage();
+  }
 }
