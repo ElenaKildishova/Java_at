@@ -60,13 +60,6 @@ public class ContactData {
   @Type(type = "text")
   @Transient
   private String photo;
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-  private Set<GroupData> groups = new HashSet<GroupData>();
-
-  public Groups getGroups() {
-    return new Groups(groups);
-  }
 
   public File getPhoto() {
     return new File(photo);
@@ -75,6 +68,25 @@ public class ContactData {
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
+  }
+  @Transient
+  private String group;
+
+  public String getGroup() {
+    return group;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   public int getId() {

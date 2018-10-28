@@ -60,18 +60,21 @@ public class ContactCreationTests extends TestBase {
       File photo = new File("src/test/resources/1.png");
       app.goTo().homePage();
       Contacts before = app.db().contacts();
-      app.contact().create(contact, true);
+      app.contact().create(contact.inGroup(groups.iterator().next()), true);
       assertThat(app.contact().count(), equalTo(before.size() + 1));
       Contacts after = app.db().contacts();
       assertThat(after, equalTo
               (before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+      verifyContactListInUI();
   }
 
   @Test
   public void testBadContactCreation() throws Exception {
+    Groups groups = app.db().groups();
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    ContactData contact = new ContactData().withFirstName("Helen'").withLastName("Kildishova").withMobilePhone("+79139507792").withEmail("elenanov@ngs.ru").withGroup("[none]");
+    ContactData contact = new ContactData().withFirstName("Helen'").withLastName("Kildishova").withMobilePhone("+79139507792")
+            .withEmail("elenanov@ngs.ru").inGroup(groups.iterator().next());
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();

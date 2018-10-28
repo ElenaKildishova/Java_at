@@ -10,6 +10,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.p4b.dev.addressbook.appmanager.ApplicationManager;
+import ru.p4b.dev.addressbook.model.ContactData;
+import ru.p4b.dev.addressbook.model.Contacts;
 import ru.p4b.dev.addressbook.model.GroupData;
 import ru.p4b.dev.addressbook.model.Groups;
 
@@ -41,6 +43,7 @@ public class TestBase {
   public void logTestStart(Method m, Object[] p) {
     logger.info("Start test " + m.getName() + " with parameters " + Arrays.asList(p));
   }
+
   @AfterMethod(alwaysRun = true)
   public void logTestStop(Method m) {
     logger.info("Stop test " + m.getName());
@@ -52,6 +55,15 @@ public class TestBase {
       Groups uiGroups = app.group().all();
       assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId())
               .withName(g.getName())).collect(Collectors.toSet())));
+    }
+  }
+
+  public void verifyContactListInUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      MatcherAssert.assertThat(uiContacts, CoreMatchers.equalTo(dbContacts.stream().map((c) -> new ContactData().withId(c.getId())
+      .withFirstName(c.getFirstname()).withLastName(c.getLastname())).collect(Collectors.toSet())));
     }
   }
 
