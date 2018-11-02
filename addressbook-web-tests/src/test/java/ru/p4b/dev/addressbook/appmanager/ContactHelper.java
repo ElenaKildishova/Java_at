@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.p4b.dev.addressbook.model.ContactData;
 import ru.p4b.dev.addressbook.model.Contacts;
+import ru.p4b.dev.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -145,7 +146,9 @@ public class ContactHelper extends HelperBase {
 
   public void addToGroup(ContactData contact) {
     selectContactById(contact.getId());
-    wd.findElement(By.name("to_group")).click();
+    if (isElementPresent(By.name("to_group"))) {
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+    }
     click(By.name("add"));
     returnToHomePage();
   }

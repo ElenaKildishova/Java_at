@@ -3,9 +3,11 @@ package ru.p4b.dev.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
-import ru.p4b.dev.addressbook.model.Contacts;
 import ru.p4b.dev.addressbook.model.GroupData;
 import ru.p4b.dev.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactToGroupTests extends TestBase {
 
@@ -25,12 +27,14 @@ public class AddContactToGroupTests extends TestBase {
   @Test
   public void testAddingContactToGroup() {
     Groups groups = app.db().groups();
-    Contacts before = app.db().contacts();
-    ContactData modifiedContact = before.iterator().next();
-    app.goTo().homePage();
-    app.contact().addToGroup(modifiedContact);
-    Contacts after = app.db().contacts();
-
-
+    ContactData selectedContact = app.db().contacts().iterator().next();
+    Groups beforeGroups = selectedContact.getGroups();
+    if (beforeGroups.size() == groups.size()) {
+      app.db().groups().add(new GroupData().withHeader("testN"));
+    }
+      app.goTo().homePage();
+      app.contact().addToGroup(selectedContact);
+    Groups afterGroups = selectedContact.getGroups();
+    assertThat(afterGroups.size(), equalTo(beforeGroups.size() + 1));
   }
 }
