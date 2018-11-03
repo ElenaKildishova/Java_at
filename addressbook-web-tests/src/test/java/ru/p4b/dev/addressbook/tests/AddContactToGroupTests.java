@@ -26,15 +26,17 @@ public class AddContactToGroupTests extends TestBase {
 
   @Test
   public void testAddingContactToGroup() {
-    Groups groups = app.db().groups();
+    Groups allGroups = app.db().groups();
     ContactData selectedContact = app.db().contacts().iterator().next();
     Groups beforeGroups = selectedContact.getGroups();
-    if (beforeGroups.size() == groups.size()) {
-      app.db().groups().add(new GroupData().withHeader("testN"));
+    GroupData selectedGroup = allGroups.iterator().next();
+    if (beforeGroups.equals(allGroups)) {
+      selectedGroup = new GroupData().withHeader("testN");
+      app.db().groups().add(selectedGroup);
     }
       app.goTo().homePage();
-      app.contact().addToGroup(selectedContact);
+      app.contact().addToGroup(selectedContact, selectedGroup);
     Groups afterGroups = selectedContact.getGroups();
-    assertThat(afterGroups.size(), equalTo(beforeGroups.size() + 1));
+    assertThat(afterGroups, equalTo(beforeGroups));
   }
 }

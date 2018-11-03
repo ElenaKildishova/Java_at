@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.p4b.dev.addressbook.model.ContactData;
 import ru.p4b.dev.addressbook.model.Contacts;
-import ru.p4b.dev.addressbook.model.Groups;
+import ru.p4b.dev.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -144,12 +144,18 @@ public class ContactHelper extends HelperBase {
             .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 
-  public void addToGroup(ContactData contact) {
+  public void addToGroup(ContactData contact, GroupData group) {
     selectContactById(contact.getId());
     if (isElementPresent(By.name("to_group"))) {
-      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
     }
     click(By.name("add"));
     returnToHomePage();
+  }
+
+  public void removeFromGroup(ContactData contact, GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByValue(group.getName());
+    selectContactById(contact.getId());
+    click(By.name("remove"));
   }
 }
