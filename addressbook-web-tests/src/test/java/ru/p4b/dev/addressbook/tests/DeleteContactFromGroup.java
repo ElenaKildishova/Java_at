@@ -5,6 +5,10 @@ import org.testng.annotations.Test;
 import ru.p4b.dev.addressbook.model.ContactData;
 import ru.p4b.dev.addressbook.model.Contacts;
 import ru.p4b.dev.addressbook.model.GroupData;
+import ru.p4b.dev.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DeleteContactFromGroup extends TestBase{
 
@@ -21,13 +25,18 @@ public class DeleteContactFromGroup extends TestBase{
     }
   }
 
-
   @Test
   public void testContactFromGroupDeletion() {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     ContactData selectedContact = before.iterator().next();
     GroupData selectedGroup = app.db().groups().iterator().next();
+    if (selectedContact.getGroups().size() == 0) {
+      app.contact().addToGroup(selectedContact, selectedGroup);
+    }
+    Groups beforeGroups = selectedContact.getGroups();
     app.contact().removeFromGroup(selectedContact, selectedGroup);
+    Groups afterGroups = selectedContact.getGroups();
+    assertThat(afterGroups.size(), equalTo(beforeGroups.size()-1));
   }
 }
