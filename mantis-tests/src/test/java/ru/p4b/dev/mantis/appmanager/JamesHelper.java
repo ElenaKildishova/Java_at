@@ -172,7 +172,7 @@ public class JamesHelper {
     return messages;
   }
 
-  public static MailMessage toModeMail(Message m) throws IOException, MessagingException {
+  public static MailMessage toModeMail(Message m) {
     try {
       return new MailMessage(m.getAllRecipients()[0].toString(), (String) m.getContent());
     } catch (MessagingException e) {
