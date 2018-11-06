@@ -147,14 +147,14 @@ public class ContactHelper extends HelperBase {
   public void addToGroup(ContactData contact, GroupData group) {
     selectContactById(contact.getId());
     if (isElementPresent(By.name("to_group"))) {
-      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getHeader());
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
     }
     click(By.name("add"));
     returnToHomePage();
   }
 
   public void removeFromGroup(ContactData contact, GroupData group) {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getHeader());
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
     selectContactById(contact.getId());
     click(By.name("remove"));
     returnToHomePage();

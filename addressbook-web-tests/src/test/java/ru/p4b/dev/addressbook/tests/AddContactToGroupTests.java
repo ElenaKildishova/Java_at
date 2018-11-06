@@ -31,11 +31,12 @@ public class AddContactToGroupTests extends TestBase {
     Groups beforeGroups = selectedContact.getGroups();
     GroupData selectedGroup = allGroups.iterator().next();
     if (beforeGroups.equals(allGroups)) {
-      selectedGroup = new GroupData().withHeader("testN");
+      selectedGroup = new GroupData().withName("testN");
       app.db().groups().add(selectedGroup);
     }
       app.goTo().homePage();
       app.contact().addToGroup(selectedContact, selectedGroup);
+      app.db().refresh(selectedContact);
     Groups afterGroups = selectedContact.getGroups();
     assertThat(afterGroups, equalTo(beforeGroups.withAdded(selectedGroup)));
   }
