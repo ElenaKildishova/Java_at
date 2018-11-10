@@ -1,12 +1,10 @@
 package ru.p4b.dev.mantis.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class SessionHelper extends HelperBase {
+public class UserHelper extends HelperBase{
 
-  public SessionHelper(ApplicationManager app) {
-
+  public UserHelper(ApplicationManager app) {
     super(app);
   }
 
@@ -14,5 +12,10 @@ public class SessionHelper extends HelperBase {
     type(By.name("username"),username);
     type(By.name("password"),password);
     click(By.xpath("//input[@value='Login']"));
-  }
+   }
+
+   public void resetPassword() {
+     click(By.cssSelector("input[value='Reset password']"));
+   }
+
 }

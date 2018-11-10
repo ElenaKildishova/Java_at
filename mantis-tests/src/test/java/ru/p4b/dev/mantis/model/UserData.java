@@ -1,5 +1,7 @@
 package ru.p4b.dev.mantis.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,12 +20,15 @@ public class UserData {
   private String email;
   @Column(name = "password")
   private String password;
+  @Column(name = "access_level")
+  private int accessLevel;
+
 
   public int getId() {
     return id;
   }
 
-  public String getUsername() {
+  public String getName() {
     return username;
   }
 

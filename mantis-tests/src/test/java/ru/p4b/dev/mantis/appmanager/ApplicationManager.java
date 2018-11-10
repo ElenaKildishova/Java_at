@@ -22,7 +22,7 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private DbHelper dbHelper;
   private NavigationHelper navigationHelper;
-  private SessionHelper sessionHelper;
+  private UserHelper userHelper;
 
 
   public ApplicationManager(String browser) {
@@ -106,10 +106,10 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public SessionHelper startSession() {
-    if (sessionHelper == null) {
-      sessionHelper = new SessionHelper(this);
+  public UserHelper user() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
     }
-    return sessionHelper;
+    return userHelper;
   }
 }
