@@ -1,5 +1,6 @@
 package ru.p4b.dev.mantis.tests;
 
+import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
