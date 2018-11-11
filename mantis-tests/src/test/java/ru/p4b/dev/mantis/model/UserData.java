@@ -21,7 +21,8 @@ public class UserData {
   @Column(name = "password")
   private String password;
   @Column(name = "access_level")
-  private int accessLevel;
+  @Type(type = "short")
+  private short accessLevel;
 
 
   public int getId() {

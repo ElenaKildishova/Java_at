@@ -15,7 +15,7 @@ public class UserHelper extends HelperBase{
    }
 
    public void resetPassword() {
-     click(By.cssSelector("input[value='Reset password']"));
+     click(By.xpath("//input[@value='Reset password']"));
    }
 
 }
