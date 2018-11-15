@@ -6,24 +6,24 @@ public class Issue {
   private String summary;
   private String description;
   private Project project;
-  private int status;
-  private int resolution;
+  private String status;
+  private String resolution;
 
-  public int getResolution() {
-    return resolution;
-  }
-
-  public Issue withResolution(int resolution) {
-    this.resolution = resolution;
-    return this;
-  }
-
-  public int getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public Issue withStatus(int status) {
+  public Issue withStatus(String status) {
     this.status = status;
+    return this;
+  }
+
+  public String getResolution() {
+    return resolution;
+  }
+
+  public Issue withResolution(String resolution) {
+    this.resolution = resolution;
     return this;
   }
 
