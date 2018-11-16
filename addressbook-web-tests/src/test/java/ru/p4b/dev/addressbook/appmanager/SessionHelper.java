@@ -1,6 +1,4 @@
 package ru.p4b.dev.addressbook.appmanager;
-
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
